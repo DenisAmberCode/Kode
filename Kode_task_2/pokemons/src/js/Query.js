@@ -1,6 +1,5 @@
-// Асинхронное получение товаров
 export default function Query(path, params) {
-	const url = new URL('http://192.168.0.101:8000');
+	const url = new URL('https://api.pokemontcg.io/v1/');
 	url.pathname += path;
 	const options = {
     	method: 'GET'
@@ -11,7 +10,7 @@ export default function Query(path, params) {
     return fetch(url, options)
 			.then((response) => {
 			    if (response.ok) {
-			        return response.json();
+			        return response;
 			    } else {
 			        throw response;
 			    }

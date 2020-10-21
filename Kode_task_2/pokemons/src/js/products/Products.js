@@ -1,111 +1,53 @@
-import React from 'react';
-import Query from '../Query';
+import React, { useState, useEffect } from 'react';
 import Product from './Product';
-import SortingProducts from './SortingProducts';
 import NavbarLeft from '../NavbarLeft/NavbarLeft';
+import Pagination from './Pagination';
 import ButtonMoreProducts from './ButtonMoreProducts';
+import updateProducts from './UpdateProducts';
 
 
-export default class Products extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			products: props.products || [],
-			pages: props.pages || 1,
-			productsCountAll: props.productsCountAll || 0,
-			title: props.title || null,
-			categoryPath: props.categoryPath || null,
-			sortingCategory: props.sortingCategory || 'popularity',
-	        error: null,
-            isLoaded: false
-		}
-		this.getMoreProducts = this.getMoreProducts.bind(this);
-		this.sortProducts = this.sortProducts.bind(this);
+export default function Products (props) {
+
+	const [products, setProducts] = useState( [] );
+	const [productsCountAll, setProductsCountAll] = useState( 0 );
+	const [type, setType] = useState( undefined );
+	const [subType, setSubType] = useState( undefined );
+	const [paginationPage, setPaginationPage] = useState( 1 );
+	const [error, setError] = useState( null );
+	const [isLoaded, setIsLoaded] = useState( false );
+	const limitProducts = 16; // Кол-во запрашиваемых/отображаемых карточек
+
+	useEffect(() => {
+		updateProducts(type, subType, paginationPage, limitProducts, setProducts, setError, setIsLoaded, setProductsCountAll);
+	  }, 
+	  [type, subType, paginationPage]
+	);
+
+
+	if ( error ) {
+		return <div>Error: { error }</div>;
+	} else if ( !isLoaded ) {
+		return null;
+	} else {
+		console.log(products);
+		let children = [];
+		products.forEach((card) => {
+			children.push(<Product key={ card.id } card={ card } />);
+		});
+
+		return (
+			<article id="products" className="products">
+				<NavbarLeft setType={ setType } setSubType={ setSubType } 
+							setPaginationPage={ setPaginationPage } productsCountAll={ productsCountAll } />
+				<h2 className="products__title"><a href={ "#" } className="products__title_text"> Pokemons </a></h2>				
+				<div className={ "products__wrapper" }>
+					{ children }
+				</div>
+				<Pagination paginationPage={ paginationPage } setPaginationPage={ setPaginationPage }
+							productsCountAll={ productsCountAll } limitProducts={ limitProducts } />
+				<ButtonMoreProducts productsCount={ products.length } productsCountAll={ productsCountAll } />
+			</article>
+		);
 	}
 
-	getMoreProducts() {
-		if (this.state.products.length >= this.state.productsCountAll) {
-			return null
-		}
-		let params = {
-			'page': this.state.pages + 1,
-			'sort': this.state.sortingCategory
-		}
-		Query(`${ this.state.categoryPath }`, params)
-			.then( (result) => {
-				if (result.products) {
-					if (result.products.length !== 0) {
-					    this.setState((state) => {
-					    	return {
-						    	isLoaded: true,
-						    	error: null,
-					    		products: [...state.products, ...result.products],
-					    		pages: state.pages + 1
-					    	}
-					    })
-					}
-				}
-			})
-			.catch(error => {
-			  	this.setState({
-			        isLoaded: true,
-			        error: error.statusText || 'fail to load resource'
-			  	});
-			})
-	}
-
-	sortProducts(event) {
-		let sortingCategory = event.target.classList[0];
-		let params = {
-			'page': 1,
-			'sort': sortingCategory
-		}
-		Query(`${ this.state.categoryPath }`, params)
-			.then( (result) => {
-				if (result.products) {
-					if (result.products.length !== 0) {
-					    this.setState((state) => {
-					    	return {
-						    	isLoaded: true,
-						    	error: null,
-					    		products: result.products,
-					    		pages: 1,
-					    		sortingCategory: sortingCategory
-					    	}
-					    })
-					}
-				}
-			})
-			.catch(error => {
-			  	this.setState({
-			        isLoaded: true,
-			        error: error.statusText || 'fail to load resource'
-			  	});
-			})
-	}
-
-	render() {
-        if (this.state.error) {
-        	return <div>Error: {this.state.error}</div>;
-        } else if (!this.state.isLoaded) {
-        	return null;
-        } else {
-			let children = [];
-			this.state.products.forEach((card) => {
-				children.push(<Product key={ card.id } card={ card } />);
-			});
-			return (
-				<React.Fragment>
-					<NavbarLeft productsCountAll={ this.state.productsCountAll } />
-					<h2 className="products__title"><a href={ "#" } className="products__title_text">{ this.state.title }Pokemons</a></h2>
-					{/* <SortingProducts productsCountAll={ this.state.productsCountAll } sortingCategory={ this.state.sortingCategory } sortProducts={ this.sortProducts } /> */}
-					
-					<div className={ "products__wrapper" }>
-						{ children }
-					</div>
-					<ButtonMoreProducts productsCount={ this.state.products.length } productsCountAll={ this.state.productsCountAll } getMoreProducts={ this.getMoreProducts } />
-				</React.Fragment>
-			);
-		}
-	}
 }

@@ -8,6 +8,7 @@ export default function Product (props) {
 		artist: props.card.artist,
 		image: props.card.imageUrl,
 	});
+	
 	return (
 		<div className={"card"}>
 			<div className="card__image">
