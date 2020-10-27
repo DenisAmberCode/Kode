@@ -1,24 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router } from "react-router-dom";
 import './css/index.css';
-import './css/styleHome.css';
+import './css/auth.css';
+import './css/home.css';
 import './css/navbarLeft.css';
-import Header from './js/header/Header';
-import Products from './js/products/Products';
-import ButtonScrollUp from './js/ButtonScrollUp';
-import Footer from './js/footer/Footer';
+import './css/extendedCard.css';
+import App from './js/Components/App';
 import * as serviceWorker from './serviceWorker';
-const $ = window.$;
-
 
 ReactDOM.render(
-  <React.StrictMode>   
-    <Header />
-    <div className="wrapper">
-      <Products />
-      <ButtonScrollUp />
-    </div>
-    <Footer />
+  <React.StrictMode>
+    <Router>
+      <App /> 
+    </Router>  
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,0 +1,72 @@
+.authBox {
+    box-sizing: border-box;
+	width: 396px;
+	height: 426px;
+	max-height: 426px;
+	min-height: 426px;
+	position: relative;
+	border: 0;
+	border-radius: 10px;
+	color: #464646;
+	background-color: #e5e5e5;
+	margin: 100px auto;
+	padding: 15px 15px 5px;
+	box-shadow: 0 0 2px rgba(0,0,0,0.5);
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    margin: 30px 0;
+    padding: 10px;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: 50px auto;
+}
+
+.authBox__submit {
+    display: block;
+    width: 96px;
+    height: 96px;
+    margin: 0 auto;
+    border: 0;
+    background:#b3b3b3;
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 35px;
+}
+
+.authBox__submit:hover {
+    background: #ababab;
+}
+
+.authBox__submit_arrow {
+    color: white;
+    font-size: 50px;
+}
+.authBox__submit_arrow:hover {
+    color: white;
+}
+
+
+@media all and (max-width: 600px) {
+    .authBox {
+        margin: 50px auto;
+        width: 90%;
+    }
+}

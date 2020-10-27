@@ -1,0 +1,92 @@
+.extCard {
+	display: flex;
+	flex-flow: row wrap;
+    width: 100%;
+    padding: 15px 0 0 0;
+	margin: 0 0 30px 0;
+	background-color: #f8f9fa;
+	font-weight: 500;
+	text-align: center;
+	font-size: 14px;
+	line-height: 28px;
+}
+
+.extCard__btn-back {
+    margin-bottom: 10px;
+}
+
+.imageBox {
+    width: 50%;
+}
+
+.imageBox img {
+    width: 65%;
+    border-radius: 10px;
+}
+
+.infoBox {
+    width: 50%;
+    text-align: left;
+    padding: 15px;
+}
+
+.infoBox__item {
+    padding: 10px;
+    font-size: 18px;
+    line-height: 21px;
+}
+
+
+.infoBox__line {
+    position: relative;
+    text-align: center;
+    font-size: 30px;
+    font-weight: normal;
+    line-height: 24px;
+    margin: 30px 10px;
+}
+
+.infoBox__line::before {
+    display: block;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    top: 13px;
+    left: 0;
+    background-color: #cdcdcd;
+}
+
+.infoBox__line_text {
+    display: inline-block;
+}
+
+.infoBox__item_title {
+    display: inline-block;
+    font-weight: 600;
+}
+
+.infoBox__item_text {
+    font-weight: 400;
+    line-height: 25px;
+}
+
+
+@media all and (max-width: 600px) {
+    .extCard {
+        padding: 0;
+    }
+    .imageBox {
+        width: 100%;
+    }   
+    .infoBox {
+        width: 100%;
+    }
+    .imageBox img {
+        width: 90%;
+    }
+    .infoBox__line {
+        margin: 10px 10px;
+    }
+
+}
