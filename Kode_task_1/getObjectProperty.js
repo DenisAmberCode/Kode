@@ -1,6 +1,6 @@
 const getObjectProperty = (obj, path, defaultValue) => {
-    nodes =  path.split('.');
-    targetObject = obj;
+    const nodes =  path.split('.');
+    let targetObject = obj;
     for (let node of nodes) {
         if ( !( node in targetObject ) ) {
             return defaultValue; 
