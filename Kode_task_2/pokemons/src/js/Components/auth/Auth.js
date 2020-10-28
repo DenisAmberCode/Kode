@@ -9,6 +9,7 @@ export default function Auth (props) {
 	const checkAuth = (event) => {
 		event.preventDefault();
 
+		// Заглушка: логин и пароль должны проверяться на сервере
 		const loginValidHashMD5 = '66594f872ada86b3e69092ca068bc9f4';
 		const passwordValodHashMD5 = '5d239937721545b67d004c7540d54a0a';
 
