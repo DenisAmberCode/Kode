@@ -53,7 +53,7 @@
 
 Bootstrap вёрстку использовал только в формочках авторизации и «Селекте категорий», остальные компоненты написаны с использованием обычных CSS стилей.
 
-**Ссылка на Github Pages:** http://DenisAmberCode.github.io/Kode
+**Ссылка на Github Pages:** http://DenisAmberCode.github.io/Kode  
 **Доступ в приложение по ключам:**
     * Логин — kode@kode.ru
     * Пароль — Enk0deng
