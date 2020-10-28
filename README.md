@@ -55,6 +55,6 @@ Bootstrap вёрстку использовал только в формочка
 
 **Ссылка на Github Pages:** http://DenisAmberCode.github.io/Kode  
 **Доступ в приложение по ключам:**  
-    * Логин — kode@kode.ru  
-    * Пароль — Enk0deng  
-    * OTP - выведется alert'ом  
+* Логин — kode@kode.ru  
+* Пароль — Enk0deng  
+* OTP - выведется alert'ом  
