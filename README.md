@@ -18,18 +18,18 @@
 
 Возникшие проблемы:
 1. Проблема с API:
-Сначала поставил пакет pokemontcgsdk для работы с API, но при запросе карточек параметр page не проставляется в запросе, ставится дефолтное значение page=1
+    Сначала поставил пакет pokemontcgsdk для работы с API, но при запросе карточек параметр page не проставляется в запросе, ставится дефолтное значение page=1
 
-// Get cards on a specific page / pageSize
-pokemon.card.where({ page: 50, pageSize: 500})
-.then(cards => {
-    console.log(cards[0].name)
-})
+    // Get cards on a specific page / pageSize
+    pokemon.card.where({ page: 50, pageSize: 500})
+    .then(cards => {
+        console.log(cards[0].name)
+    })
 
-Решение:
-Использовал вместо пакет pokemontcgsdk, обычный fetch запрос. Написал function Query, которая делает запрос на 'https://api.pokemontcg.io/v1/' и выставляет верные значения параметров.
+    Решение:
+    Использовал вместо пакет pokemontcgsdk, обычный fetch запрос. Написал function Query, которая делает запрос на 'https://api.pokemontcg.io/v1/' и выставляет верные значения параметров.
 
 2. Структура JSON ответа с расширенной информацией о покемоне.
-Для упрощения получения соответствующего свойства покемона из JSON ответа использовал функцию getObjectProperty() из первого задания, не зря же писал)
+    Для упрощения получения соответствующего свойства покемона из JSON ответа использовал функцию getObjectProperty() из первого задания, не зря же писал)
 
 
