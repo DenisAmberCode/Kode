@@ -21,10 +21,10 @@
 1. Проблема с API:
     Сначала поставил пакет pokemontcgsdk для работы с API, но при запросе карточек параметр page не проставляется в запросе, ставится дефолтное значение page=1
 
-    // Get cards on a specific page / pageSize.
-    pokemon.card.where({ page: 50, pageSize: 500})
-    .then(cards => {
-        console.log(cards[0].name)
+    // Get cards on a specific page / pageSize  
+    pokemon.card.where({ page: 50, pageSize: 500})  
+    .then(cards => {  
+        console.log(cards[0].name)  
     })
 
     Решение:
