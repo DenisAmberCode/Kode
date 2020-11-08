@@ -18,11 +18,9 @@ export default function Auth (props) {
 		let enteredCodeOTPHashMD5 = MD5(event.target.codeOTP.value).toString();
 		if ( enteredCodeOTPHashMD5 === CodeOTPValidHashMD5 ) {
 			setSessionKeyInLocalStorage();
-			history.push('/home')
+			history.push('/home');
 		} else {
-			if ( enteredCodeOTPHashMD5 !== CodeOTPValidHashMD5 ) {
-				document.getElementById('inputOTP').classList.add("is-invalid");
-			}
+			document.getElementById('inputOTP').classList.add("is-invalid");
 		}
 		
 	}
@@ -35,7 +33,11 @@ export default function Auth (props) {
 
 	useEffect(() => {
 		if ( props.isLoginPasswordValid ) {
-			setTimeout(() => alert('Authorization code from SMS: ' + CodeOTPValid), 1000);
+			let delayOTP = setTimeout(() => alert('Authorization code from SMS: ' + CodeOTPValid), 1000);
+			
+			return () => {
+				clearTimeout(delayOTP);
+			}
 		}
 	  },
 	  [props.isLoginPasswordValid, CodeOTPValid]
