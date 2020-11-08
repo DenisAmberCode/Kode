@@ -11,12 +11,12 @@ export default function Auth (props) {
 
 		// Заглушка: логин и пароль должны проверяться на сервере
 		const loginValidHashMD5 = '66594f872ada86b3e69092ca068bc9f4';
-		const passwordValodHashMD5 = '5d239937721545b67d004c7540d54a0a';
+		const passwordValidHashMD5 = '5d239937721545b67d004c7540d54a0a';
 
 		let enteredLoginHashMD5 = MD5(event.target.login.value).toString();
 		let enteredPasswordHashMD5 = MD5(event.target.password.value).toString();
 
-		if ( (enteredLoginHashMD5 === loginValidHashMD5) && (enteredPasswordHashMD5 === passwordValodHashMD5) ) {
+		if ( (enteredLoginHashMD5 === loginValidHashMD5) && (enteredPasswordHashMD5 === passwordValidHashMD5) ) {
 			props.setIsLoginPasswordValid( true ); // логин и пароль введены верно
 			history.push('/loginOTP')
 		} else {
@@ -30,7 +30,7 @@ export default function Auth (props) {
 			}
 
 			let inputPassword = document.getElementById('inputPassword');
-			if ( enteredPasswordHashMD5 !== passwordValodHashMD5 ) {
+			if ( enteredPasswordHashMD5 !== passwordValidHashMD5 ) {
 				inputPassword.classList.add("is-invalid");
 			} else {
 				inputPassword.classList.remove("is-invalid");
