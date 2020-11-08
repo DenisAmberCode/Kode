@@ -7,15 +7,15 @@ export default function PaginationItem (props) {
 
         switch (props.value) {
             case 'Previous':
-                props.setPaginationPage(prevpaginationPage => {
-                    if (prevpaginationPage - 1 > 0) {
-                        return prevpaginationPage - 1;
+                props.setPaginationPage(prevPaginationPage => {
+                    if (prevPaginationPage - 1 > 0) {
+                        return prevPaginationPage - 1;
                     }
-                    else return prevpaginationPage;   
+                    else return prevPaginationPage;   
                 });
                 break;
             case 'Next':
-                props.setPaginationPage(prevpaginationPage => prevpaginationPage + 1);
+                props.setPaginationPage(prevPaginationPage => prevPaginationPage + 1);
                 break;
             default:
                 props.setPaginationPage( props.value);
