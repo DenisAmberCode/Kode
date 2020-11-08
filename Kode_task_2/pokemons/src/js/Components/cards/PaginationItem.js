@@ -15,10 +15,17 @@ export default function PaginationItem (props) {
                 });
                 break;
             case 'Next':
-                props.setPaginationPage(prevPaginationPage => prevPaginationPage + 1);
+                props.setPaginationPage(prevPaginationPage => {
+                    if (prevPaginationPage + 1 <= countCardsPages) {
+                        return prevPaginationPage + 1;
+                    }
+                    else return prevPaginationPage;
+                });
                 break;
             default:
-                props.setPaginationPage( props.value);
+                if ((0 < props.value) && (props.value <= countCardsPages)) {
+                    props.setPaginationPage( props.value);
+                }
                 break;
         }
     }
